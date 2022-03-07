@@ -1,0 +1,32 @@
+image node:alipne
+
+stages:
+  - install
+  - test
+  - depploy-staging
+  - deploy-production
+
+install-app
+  stage: install
+  script:
+  - whoami
+  - pwd
+  - locate npm
+  - echo ${PATH}
+  - ls -lh $(which  npm)
+  - cd front
+  - npm install
+
+init-test: 
+  stage: test
+  script:
+  - cd front
+  - npm install
+  - npm run test-unit
+
+functional-test:
+  stage: test
+  script:
+    - cd front
+    - npm install
+    - npm run test-functionnal
